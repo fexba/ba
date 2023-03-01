@@ -80,7 +80,7 @@ export const Logo = () => (
           paddingLeft: "10px",
           fontSize: "20px",
         }}>
-        面霸
+        面霸 💯
       </span>
     </GatsbyLink>
   </Box>
