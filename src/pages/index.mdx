@@ -1,0 +1,119 @@
+---
+navigationLabel: Home
+---
+
+import { format } from "date-fns";
+
+<Grid
+  sx={{
+    mb: 6
+  }}
+>
+
+<SiteMetaData>
+  {(siteMetadata) => {
+    const { name, description } = siteMetadata;
+    return (
+      <Fragment>
+        <Heading variant="styles.h1">{name}</Heading>
+        <Text>{description}</Text>
+      </Fragment>
+    );
+  }}
+</SiteMetaData>
+
+避免失联可以先收藏然后点 star ⭐
+
+<Grid
+  sx={{
+    alignItems: 'center',
+    gridTemplateColumns: 'auto 1fr'
+  }}
+>
+<Button
+  sx={{ mb: 2 }}
+  as="a"
+  variant="success"
+  href="https://github.com/zoeblow/mianba"
+  target="_blank"
+>
+  🌏View theme on GitHub
+</Button>
+
+<Link sx={{ whiteSpace: 'nowrap',color:'#fff',fontSize:'20px',textDecoration:'none' }} href="https://github.com/zoeblow/mianba" target="_blank"> 🌏 面霸</Link>
+</Grid>
+
+<Alert variant="success">Alert... My website is faster than yours!</Alert>
+
+</Grid>
+
+<Grid
+  sx={{
+    gap: 0,
+    mb: 6
+  }}
+>
+
+## About
+
+本仓库为前端面试题库，包含不限于 Vue 面试题，React 面试题，JS 面试题，HTTP 面试题，工程化面试题，CSS 面试题，算法面试题，大厂面试题，高频面试题，如果收集的文章侵犯您的利益，请与我们联系！
+
+</Grid>
+
+<Grid sx={{ gridTemplateColumns: ['1fr', '1fr', '1fr 1fr'] }}>
+
+<Box>
+
+## Contact
+
+<Heading variant="styles.h3" sx={{ mb: 0 }}>
+  Email
+</Heading>
+<Link href="mailto:zoeblow@gmail.com" variant="styles.a">
+  zoeblow@gmail.com
+</Link>
+<Heading variant="styles.h3" sx={{ mb: 0 }}>
+  GitHub
+</Heading>
+<Link href="https://github.com/zoeblow/mianba" variant="styles.a" target="_blank">
+  https://github.com/zoeblow/mianba
+</Link>
+</Box>
+
+<Box>
+
+## Top 5 tags
+
+<SourceTags >
+  {(source) => (
+    <Flex sx={{ flexDirection: 'column' }}>
+      {source
+        .splice(0, 5)
+        .sort((a, b) => b.percent - a.percent)
+        .map((tag, index) => {
+          const { name, count, percent } = tag
+          return (
+            <Box key={index} sx={{ color: 'muted', mb: 3, svg: { fill: 'muted' } }}>
+              <Flex sx={{ lineHeight: 'normal' }}>
+                <Text sx={{ color: 'secondary', mr: 2, mb: 0 }}>{`${name}(${count})`}</Text>
+                <Text sx={{ color: 'muted' }}>{percent}</Text>
+                <Text sx={{ color: 'error' }}>%</Text>
+              </Flex>
+              <Flex>
+                <Box>{'['}</Box>
+                <Box sx={{ flexBasis: '100%' }}>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 8" width="100%" height="8">
+                    <rect width={`${percent * 3}%`} height={4} />
+                  </svg>
+                </Box>
+                <Box> {']'}</Box>
+              </Flex>
+            </Box>
+          )
+        })}
+    </Flex>
+  )}
+</SourceTags>
+</Box>
+
+</Grid>

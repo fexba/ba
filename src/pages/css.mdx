@@ -1,0 +1,47 @@
+---
+navigationLabel: CSS系列
+---
+
+import { format } from "date-fns";
+
+# [CSS 系列](#CSS系列)
+
+<SourceList filter="css">
+  {(css) => (
+    <ul>
+      {css
+        .filter((edge) => !edge.node.frontmatter.isPrivate)
+        .reduce((routes, route) => {
+          return route.node.frontmatter.pinned
+            ? [route, ...routes]
+            : [...routes, route];
+        }, [])
+        .map((edge, index) => {
+          const {
+            featuredImageUrl,
+            frontmatter: { title, featuredImage, tags, date, pinned },
+            excerpt,
+            fields: { slug },
+          } = edge.node;
+          return (
+            <li>
+              <Link
+                href={slug}
+                target="_blank"
+                sx={{
+                  textDecoration: "none",
+                  display: "flex",
+                  flex: "1 1 auto",
+                  flexDirection: "column",
+                  fontSize: "18px",
+                  fontWeight: "bold",
+                  minHeight: "1px",
+                }}>
+                {title}
+              </Link>
+            </li>
+          );
+        })}
+    </ul>
+  )}
+</SourceList>
