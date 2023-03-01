@@ -1,0 +1,87 @@
+---
+# navigationLabel: Posts
+---
+
+import { format } from 'date-fns'
+
+# posts
+
+You can use the `<SourceList filter="posts" />` component from any `.mdx`.
+
+Here we use it to return all the `posts` by using the filter prop
+
+<SourceList filter="posts">
+  {(posts) => (
+    <Grid
+      sx={{
+        gridTemplateColumns: ['1fr', '1fr', '1fr 1fr'],
+      }}
+    >
+      {posts
+        .filter((edge) => !edge.node.frontmatter.isPrivate)
+        .reduce((routes, route) => {
+          return route.node.frontmatter.pinned ? [route, ...routes] : [...routes, route]
+        }, [])
+        .map((edge, index) => {
+          const {
+            featuredImageUrl,
+            frontmatter: { title, featuredImage, tags, date, pinned },
+            excerpt,
+            fields: { slug },
+          } = edge.node
+          return (
+            <Box
+              key={index}
+              sx={{
+                display: 'flex',
+                flex: '1 1 auto',
+                flexDirection: 'column',
+              }}
+            >
+              <Link
+                href={slug}
+                sx={{
+                  textDecoration: 'none',
+                  display: 'flex',
+                  flex: '1 1 auto',
+                  flexDirection: 'column',
+                  minHeight: '1px',
+                }}
+              >
+                <Card
+                  sx={{
+                    display: 'flex',
+                    flex: '1 1 auto',
+                    flexDirection: 'column',
+                    minHeight: '1px',
+                  }}
+                >
+                  <Box sx={{ minHeight: '1px' }}>
+                    {featuredImage ? <GatsbyImage alt={title} image={featuredImage.childImageSharp} /> : null}
+                    {featuredImageUrl ? <GatsbyImage alt={title} image={featuredImageUrl.childImageSharp} /> : null}
+                  </Box>
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      flex: '1 1 auto',
+                      flexDirection: 'column',
+                      p: 3,
+                    }}
+                  >
+                    <Heading variant="styles.h4" sx={{ color: pinned ? 'primary' : 'text' }}>
+                      {title}
+                    </Heading>
+                    <Text sx={{ mb: 1, color: 'muted' }}>{format(new Date(date), 'd-MMM-u')}</Text>
+                    <Text sx={{ mb: 1, color: 'text' }}>{excerpt}</Text>
+                  </Box>
+                  <Box sx={{ p: 3 }}>
+                    <Text>View Post</Text>
+                  </Box>
+                </Card>
+              </Link>
+            </Box>
+          )
+        })}
+    </Grid>
+  )}
+</SourceList>
