@@ -3,9 +3,9 @@ module.exports = {
     name: `面霸`,
     description: `面霸 - 前端面试专题`,
     keywords: [`面试`, `vue`, `react`, `前端`],
-    siteUrl: `https://mianba.netlify.app`,
-    siteImage: `https://mianba.netlify.app/images/graph-image.jpg`,
-    profileImage: `https://mianba.netlify.app/images/profile-image.jpg`,
+    siteUrl: `https://ba.js.cool`,
+    siteImage: `https://ba.js.cool/images/graph-image.jpg`,
+    profileImage: `https://ba.js.cool/images/profile-image.jpg`,
     lang: `zh`,
     config: {
       sidebarWidth: 280,
