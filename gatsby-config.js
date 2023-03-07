@@ -1,11 +1,17 @@
+console.log(process.env.NODE_ENV);
+
+const isDev = "development" === process.env.NODE_ENV;
+
+const baseUrl = isDev ? "http://localhost:8000" : `https://ba.js.cool`;
+
 module.exports = {
   siteMetadata: {
     name: `面霸`,
     description: `面霸 - 前端面试专题`,
     keywords: [`面试`, `vue`, `react`, `前端`],
-    siteUrl: `https://ba.js.cool`,
-    siteImage: `https://ba.js.cool/images/graph-image.jpg`,
-    profileImage: `https://ba.js.cool/images/profile-image.jpg`,
+    siteUrl: `${baseUrl}`,
+    siteImage: `${baseUrl}/images/graph-image.jpg`,
+    profileImage: `${baseUrl}/images/profile-image.jpg`,
     lang: `zh`,
     config: {
       sidebarWidth: 280,
